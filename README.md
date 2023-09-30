@@ -14,11 +14,11 @@ Add URL as argument and y/n for verbal response
 ```bash
 python3 pagescraper.py 10.10.10.10 n
 ```
-Or without
+Or pipe it to tee command to store in a text file
 ```bash
 python3 pagescraperTHN.py 10.10.10.10 y | tee thn_9_20_23.txt
 ```
-Or pipe it to tee command to store in a text file
+Or without any arguments
 ```bash
 python3 pagescraper.py
 ```
