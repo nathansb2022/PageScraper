@@ -6,7 +6,7 @@
 #     python3 pagescraper.py https://www.google.com
 #     python3 pagescraper.py https://www.google.com y
 #INSTALL
-#sudo pip3 install espeak rainbowtext PyAudio
+#sudo pip3 install espeak rainbowtext PyAudio bs4
 import requests, sys, pyttsx3, rainbowtext, os, time
 from colorama import Fore
 from bs4 import BeautifulSoup
@@ -54,11 +54,11 @@ def scrape(site):
 		what_say = fd.read()
 		fd.close()
 	outtie = rainbowtext.text(what_say)
-	print(outtie)
-	return what_say
+	preFace = "\n The Hacker News, Number 1 Trusted Cybersecurity News platform \n"
+	print(preFace + outtie)
+	return preFace + what_say
 # Speak the contents gathered by scrape()
 def startIt(site):
-
 	engine = pyttsx3.init()
 	engine.setProperty('rate', 135)
 	engine.say(scrape(site))

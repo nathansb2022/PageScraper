@@ -6,7 +6,7 @@
 #     python3 pagescraper.py https://www.google.com
 #     python3 pagescraper.py https://www.google.com y
 #INSTALL
-#sudo pip3 install espeak rainbowtext PyAudio
+#sudo pip3 install espeak rainbowtext PyAudio bs4
 import requests, sys, pyttsx3, rainbowtext
 from colorama import Fore
 from bs4 import BeautifulSoup

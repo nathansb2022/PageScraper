@@ -26,5 +26,5 @@ python3 pagescraper.py
 
 To grab python requirements do:
 ```bash
-sudo pip3 install espeak rainbowtext PyAudio
+sudo pip3 install espeak rainbowtext PyAudio bs4
 ```
