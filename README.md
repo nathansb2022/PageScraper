@@ -1,6 +1,6 @@
 # PageScraper
 
-Python script to gather the text of a html web page and display it in the console. Addtitionally, has the ability to speak the provided text. There is "The Hacker News" rendition is in theHackerNews folder and "Artificial Intelligence News" is in the artificialintelligence-news folder.
+Python script to gather the text of a html web page and display it in the console. Addtitionally, has the ability to speak the provided text. There is "The Hacker News" rendition in theHackerNews folder and "Artificial Intelligence News" is in the artificialintelligence-news folder.
 
 # Terminal Output
 
