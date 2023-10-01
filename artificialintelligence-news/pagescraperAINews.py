@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 
-#Time to page scrape thhackernews.com
+#Time to page scrape artificialintelligence-news.com
 #Works to gather text from the html of the URL and displays the results
-#USE: python3 pagescraperTHN.py
-#     python3 pagescraperTHN.py y
+#USE: python3 pagescraperAINews.py
+#     python3 pagescraperAINews.py y
 #INSTALL
 #sudo pip3 install espeak rainbowtext PyAudio bs4
 import requests, sys, pyttsx3, rainbowtext, os, time
 from colorama import Fore
 from bs4 import BeautifulSoup
-site = "https://thehackernews.com"
+site = "https://www.artificialintelligence-news.com/"
 # Do you want a verbal response. Can be passed as a cmd line argument
 def audioOrNot(site):
 	if not len(sys.argv) > 1:
@@ -40,13 +40,13 @@ def scrape(site):
 		fileLines = fd.readlines()
 		fd.seek(0)
 		fd.truncate()
-		fd.writelines(fileLines[110:-270])
+		fd.writelines(fileLines[335:-305])
 		fd.close()
 	with open('filename', 'r') as fd:
 		what_say = fd.read()
 		fd.close()
 	outtie = rainbowtext.text(what_say)
-	preFace = "\n The Hacker News, Number 1 Trusted Cybersecurity News platform \n"
+	preFace = "\n Artificial Intelligence News \n"
 	print(preFace + outtie)
 	return preFace + what_say
 # Speak the contents gathered by scrape()
