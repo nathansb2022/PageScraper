@@ -9,7 +9,26 @@
 import requests, sys, pyttsx3, rainbowtext, os, time
 from colorama import Fore
 from bs4 import BeautifulSoup
+from openai import OpenAI
+# Add in your environment variable name for OPENAI_API_KEY
+client = OpenAI(
+   api_key = os.environ.get('OKEY'),
+ )
 site = "https://thehackernews.com"
+# In system role modify your cyber assistant to your specifications
+def get_completion(prompt):
+	completion = client.chat.completions.create(
+	  model="gpt-4-1106-preview",
+	  messages=[
+	    {"role": "system", "content": "You are a Cybersecurity assistant, skilled in explaining complex cybersecurity challenges, \
+		threats, recommendations, and remediations. Sift the information provided, takeaway the highlights, and summarize the \
+		content in a professional format. Please put in a paragraph format as if you were to read it to someone. Be professional \
+		and funny."},
+	    {"role": "user", "content": prompt}
+	  ]
+	)
+	return completion.choices[0].message.content
+
 # Do you want a verbal response. Can be passed as a cmd line argument
 def audioOrNot(site):
 	if not len(sys.argv) > 1:
@@ -32,23 +51,25 @@ def scrape(site):
 	html = r.text
 	soup = BeautifulSoup(html, "html.parser")
 	lines = soup.body.get_text().strip()
-	with open("filename","xt") as fd:
+	filename = "THN_" + time.strftime("%Y%m%d") + ".txt"
+	with open(filename,"xt") as fd:
 		for line in lines:
 			fd.write(line)
 		fd.close()
-	with open("filename", "r+") as fd:
+	with open(filename, "r+") as fd:
 		fileLines = fd.readlines()
 		fd.seek(0)
 		fd.truncate()
 		fd.writelines(fileLines[110:-270])
 		fd.close()
-	with open('filename', 'r') as fd:
+	with open(filename, 'r') as fd:
 		what_say = fd.read()
 		fd.close()
-	outtie = rainbowtext.text(what_say)
-	preFace = "\n The Hacker News, Number 1 Trusted Cybersecurity News platform \n"
+	cgpt = get_completion(what_say)
+	outtie = rainbowtext.text(cgpt)
+	preFace = "\n From The Hacker News, Number 1 Trusted Cybersecurity News platform and summarized with ChatGPT. \n"
 	print(preFace + outtie)
-	return preFace + what_say
+	return preFace + cgpt
 # Speak the contents gathered by scrape()
 def startIt(site):
 	engine = pyttsx3.init()
@@ -57,4 +78,3 @@ def startIt(site):
 	engine.runAndWait()
 if __name__ == "__main__":
 	audioOrNot(site)
-	os.remove("filename")
