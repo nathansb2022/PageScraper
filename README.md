@@ -4,7 +4,7 @@ Python script to gather the text of a html web page and display it in the consol
 
 ## theHackerNews Folder
 
-This folder contains a python file that scrapes thehackernews.com and then passes the data to ChatGPT API to summarize the page. The summary is saved in working directory THN_yyymmdd.txt.
+This folder contains a python file that scrapes thehackernews.com and then passes the data to ChatGPT API to summarize the page. The data from thehackernews.com is saved in working directory THN_yyymmdd.txt.
 
 ### Example usage of pagescraperTHN.py
 
