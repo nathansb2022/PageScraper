@@ -20,11 +20,11 @@ def get_completion(prompt):
 	completion = client.chat.completions.create(
 	  model="gpt-4-1106-preview",
 	  messages=[
-	    {"role": "system", "content": "You are a Cybersecurity assistant, skilled in explaining complex cybersecurity challenges, \
+		{"role": "system", "content": "You are a Cybersecurity assistant, skilled in explaining complex cybersecurity challenges, \
 		threats, recommendations, and remediations. Sift the information provided, takeaway the highlights, and summarize the \
 		content in a professional format. Please put in a paragraph format as if you were to read it to someone. Be professional \
 		and funny."},
-	    {"role": "user", "content": prompt}
+		{"role": "user", "content": prompt}
 	  ]
 	)
 	return completion.choices[0].message.content
@@ -66,6 +66,9 @@ def scrape(site):
 		what_say = fd.read()
 		fd.close()
 	cgpt = get_completion(what_say)
+	with open(filename, 'a') as fd:
+		fd.write(cgpt)
+		fd.close()
 	outtie = rainbowtext.text(cgpt)
 	preFace = "\n From The Hacker News, Number 1 Trusted Cybersecurity News platform and summarized with ChatGPT. \n"
 	print(preFace + outtie)
